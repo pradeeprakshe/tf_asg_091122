@@ -53,112 +53,39 @@ variable "iac_repo" {
   description = "The repository where the infrastructure-as-code exists."
 }
 
+variable "vpc_cidr" {
+	default = "10.X.X.X/16"
+}
+
+variable "subnets_cidr" {
+	type = "list"
+	default = ["10.X.X.X/24", "10.X.X.X/24"]
+}
+
+variable "azs" {
+	type = "list"
+	default = ["us-east-1a", "us-east-1b"]
+}
+
+variable "required_ami" {
+  default = "ami-0ff8a91507f77f867XXX"
+}
+
+variable "instance_type" {
+  default = "t2.XXXXX"
+}
+
+variable "ec2key" {
+  default = "t2.key"
+}
+
+
+
 ##############################################################################
 # TEMPLATES CONFIGURATION PARAMETERS
 ##############################################################################
-variable "vpc" {
-  type        = string
-  description = "The VPC Name"
-}
+#variable "vpc" {
+#  type        = string
+#  description = "The VPC Name"
+#}
 
-variable "lambda_function_ephemeral_storage_size" {
-  description = "Amount of ephemeral storage (/tmp) in MB your Lambda Function can use at runtime. Valid value between 512 MB to 10,240 MB (10 GB)."
-  type        = number
-  default     = 512
-}
-
-variable "recreate_missing_package" {
-  description = "Whether to recreate missing Lambda package if it is missing locally or not"
-  type        = bool
-  default     = true
-}
-
-variable "log_events" {
-  description = "Boolean flag to enabled/disable logging of incoming events"
-  type        = bool
-  default     = false
-}
-
-variable "reserved_concurrent_executions" {
-  description = "The amount of reserved concurrent executions for this lambda function. A value of 0 disables lambda from being triggered and -1 removes any concurrency limitations"
-  type        = number
-  default     = -1
-}
-
-variable "cloudwatch_log_group_retention_in_days" {
-  description = "Specifies the number of days you want to retain log events in log group for Lambda."
-  type        = number
-  default     = 7
-}
-
-variable "handler_py" {
-  description = "The handler for the lambda Function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_py_description" {
-  description = "The description of the Lambda function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_py_source_path" {
-  description = "The source path of the custom Lambda function"
-  type        = string
-  default     = null
-}
-
-variable "handler_go" {
-  description = "The handler for the lambda Function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_go_description" {
-  description = "The description of the Lambda function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_go_source_path" {
-  description = "The source path of the custom Lambda function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_py_architecture" {
-  description = "The architecture of the Lambda function (arm64 or x86_64)"
-  type        = string
-  default     = "x86_64"
-}
-
-variable "lambda_go_architecture" {
-  description = "The architecture of the Lambda function (arm64 or x86_64)"
-  type        = string
-  default     = "x86_64"
-}
-
-variable "lambda_node_source_path" {
-  description = "The source path of the custom Lambda function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_node_architecture" {
-  description = "The architecture of the Lambda function (arm64 or x86_64)"
-  type        = string
-  default     = "x86_64"
-}
-
-variable "handler_node" {
-  description = "The handler for the lambda Function"
-  type        = string
-  default     = null
-}
-
-variable "lambda_node_description" {
-  description = "The description of the Lambda function"
-  type        = string
-  default     = null
-}
